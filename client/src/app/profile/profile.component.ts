@@ -1,8 +1,11 @@
 import { Component } from "@angular/core";
 import { AuthenticationService, UserDetails } from "../authentication.service";
 
+
+
 @Component({
   templateUrl: "./profile.component.html",
+
 })
 export class ProfileComponent {
   details: UserDetails;
@@ -11,9 +14,23 @@ export class ProfileComponent {
 
   ngOnInit() {
     this.auth.profile().subscribe(
-      (user) => {
+      user => {
         this.details = user;
       },
+      (err) => {
+        console.error(err);
+      }
+    );
+    //console.log('hi')
+  }
+
+  public call() {
+
+    this.auth.profile().subscribe(
+      user => {
+        this.details = user;
+      },
+
       (err) => {
         console.error(err);
       }

@@ -1,8 +1,8 @@
-<form class="form" (submit)="add(taskTitle.value); taskTitle.value=''">
-    <div class="form-group">
-        <input type="text" #taskTitle class="form-control" placeholder="Task Name" />
+<form class="form-inline" (submit)="add(taskTitle.value); taskTitle.value=''">
+  <div  class="form-group mb-2 my-auto">
+        <input style="margin-right: 1em; " type="text" #taskTitle class="form-control" placeholder="Task Name" />
     </div>
-    <input type="submit" value="SUBMIT" class="btn btn-success btn-lg btn-block">
+    <input type="submit" value="SUBMIT" class="btn btn-success btn-sm">
 </form>
 
 <table class="table">
@@ -14,7 +14,7 @@
             </a>
         </td>
         <td class="text-right">
-            <button class="btn btn-danger" (click)="delete(task)">Delete</button>
+            <button class="btn btn-dark btn-sm" (click)="delete(task)">Delete</button>
         </td>
     </tr>
 </table>

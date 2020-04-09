@@ -4,6 +4,7 @@ import { Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 
+
 export interface UserDetails {
   id: number;
   name: string;
@@ -44,10 +45,10 @@ export class AuthenticationService {
 
   public getUserDetails(): UserDetails {
     const token = this.getToken();
-    let payload;
+    let payload
     if (token) {
-      payload = token.split(".")[1];
-      payload = window.atob(payload);
+      payload = token.split('.')[1];
+      payload = window.atob(payload);//decode string
 
       return JSON.parse(payload);
 
@@ -58,6 +59,7 @@ export class AuthenticationService {
 
   public isLoggedIn(): boolean {
     const user = this.getUserDetails();
+
     if (user) {
       return user.exp > Date.now() / 1000;
     } else {
@@ -83,7 +85,7 @@ export class AuthenticationService {
       }
     );
 
-    console.log(user);
+    console.log(user);//oof easy now
 
     const request = base.pipe(
       map((data: TokenResponse) => {
@@ -98,9 +100,12 @@ export class AuthenticationService {
   }
 
   public profile(): Observable<any> {
+    //console.log(this.getToken())
     return this.http.get(`api/profile`, {
-      headers: { Authorisation: `Bearer ${this.getToken()}` },
+      headers: { Authorization: `Bearer ${this.getToken()}` },
     });
+
+
   }
 
   public logout(): void {

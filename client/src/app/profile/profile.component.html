@@ -3,9 +3,9 @@
     <div class="col-sm-8 mx-auto">
       <h1 class="text-center">To-Do List</h1>
     </div>
-    <table class="table col-md-6 mx-auto">
+    <table class="table col-md-8 mx-auto">
       <tr>
-        <td>Fist Name</td>
+        <td>Name</td>
         <td>{{ details?.name }}</td>
       </tr>
       <tr>
@@ -13,9 +13,17 @@
         <td>{{ details?.email }}</td>
       </tr>
     </table>
-    <app-tasks></app-tasks>
-  </div>
+    <div class="col-sm-6 mx-auto">
+      <app-tasks></app-tasks>
+    </div>
 
+
+
+  </div>
+  <button class="btn btn-danger" (click)="call()">test</button>
 </div>
+
+
+
 
 
