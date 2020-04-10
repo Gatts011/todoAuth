@@ -4,7 +4,7 @@ import { AuthenticationService, UserDetails } from "../authentication.service";
 
 
 @Component({
-  templateUrl: "./profile.component.html",
+  templateUrl: './profile.component.html',
 
 })
 export class ProfileComponent {
@@ -13,22 +13,17 @@ export class ProfileComponent {
   constructor(private auth: AuthenticationService) {}
 
   ngOnInit() {
-    this.auth.profile().subscribe(
-      user => {
-        this.details = user;
-      },
-      (err) => {
-        console.error(err);
-      }
+    this.auth.profile().subscribe(user => {this.details = user.user},
+      (err) => {console.error(err)}
     );
-    //console.log('hi')
+
   }
 
   public call() {
-
     this.auth.profile().subscribe(
       user => {
         this.details = user;
+        console.log(user.user.name)
       },
 
       (err) => {
