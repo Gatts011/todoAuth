@@ -19,6 +19,7 @@ Route::get('tasks/{id}', 'TaskController@show');
 Route::post('tasks', 'TaskController@store');
 Route::put('tasks/{id}', 'TaskController@update');
 Route::delete('tasks/{id}', 'TaskController@delete');
+
 Route::post('register', 'UserController@register');
 Route::post('login', 'UserController@login');
 Route::get('profile', 'UserController@getAuthenticatedUser');

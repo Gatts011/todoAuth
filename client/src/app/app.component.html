@@ -17,7 +17,7 @@
         <a class="nav-link" routerLink="/register">Register</a>
       </li>
       <li *ngIf="auth.isLoggedIn()" class="nav-item">
-        <a class="nav-link" routerLink="/profile">Proflie</a>
+        <a class="nav-link" routerLink="/profile">Profile</a>
       </li>
       <li *ngIf="auth.isLoggedIn()" class="nav-item">
         <a class="nav-link" routerLink="" (click)="auth.logout()">Logout</a>

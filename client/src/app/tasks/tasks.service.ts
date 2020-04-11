@@ -7,13 +7,14 @@ import { Task } from './task'
 export class TasksService {
     constructor(private http: HttpClient) { }
 
-    getTasks (): Observable<Task[]> {
-        return this.http.get<Task[]>('api/tasks')
+    getTasks (owner_id: number): Observable<Task[]> {
+      const url = `api/tasks/${owner_id}`
+        return this.http.get<Task[]>(url)
     }
 
     addTask (task: Task): Observable<Task> {
         console.log(task)
-        return this.http.post<Task>('api/tasks', task)
+        return this.http.post<Task>('api/tasks', task)//has 2 parameters from add (component)
     }
 
     deleteTask (id: number): Observable<{}> {

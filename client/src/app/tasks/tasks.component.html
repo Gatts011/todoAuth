@@ -1,4 +1,4 @@
-<form class="form-inline" (submit)="add(taskTitle.value); taskTitle.value=''">
+<form class="form-inline" (submit)="add(details.id, taskTitle.value); taskTitle.value=''">
   <div  class="form-group mb-2 my-auto">
         <input style="margin-right: 1em; " type="text" #taskTitle class="form-control" placeholder="Task Name" />
     </div>
@@ -11,6 +11,7 @@
             <a (click)="edit(task)">
                 <span *ngIf="task!==editTask">{{task.title}}</span>
                 <input type="text" *ngIf="task===editTask" [(ngModel)]="task.title" (blur)="update()" (keyup.enter)="update()">
+
             </a>
         </td>
         <td class="text-right">

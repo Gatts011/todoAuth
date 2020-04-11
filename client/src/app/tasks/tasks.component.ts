@@ -2,35 +2,50 @@ import { TasksService } from './tasks.service'
 import { Task } from './task'
 import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService, UserDetails } from "../authentication.service";
 
 @Component({
     selector: 'app-tasks',
     templateUrl: './tasks.component.html',
     providers: [TasksService]
+
+
 })
 
 export class TasksComponent implements OnInit {
     tasks: Task[]
     editTask: Task
+    details: UserDetails;
 
-    constructor(private taskService: TasksService, private http: HttpClient) { }
+
+    constructor(private taskService: TasksService, private http: HttpClient, private auth: AuthenticationService) { }
+
 
     ngOnInit () {
-        this.getTasks()
+        this.auth.profile().subscribe(
+          user => {this.details = user.user,this.getTasks()},
+          (err) => {console.error(err)},
+
+        )
+        //console.log('innnnnnnnit')
+        //this.getTasks()
     }
+
 
     getTasks (): void {
-        this.taskService.getTasks().subscribe(tasks => (this.tasks = tasks))
+
+        this.taskService.getTasks(this.details.id).subscribe(tasks => (this.tasks = tasks))
     }
 
-    add (title: string): void {
+    add (owner_id: number, title: string): void {
         this.editTask = undefined
         title = title.trim()
         if (!title) {
             return
         }
 
-        const newTask: Task = { title } as Task
+        const newTask: Task = {owner_id, title } as Task
+
         this.taskService.addTask(newTask).subscribe(() => this.getTasks())
     }
 
